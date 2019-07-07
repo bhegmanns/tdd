@@ -1,0 +1,16 @@
+String Calculator -1-
+
+a) An empty String ("") results 0
+
+b) A String containing only one number returns this number
+
+c) A String with two comma separated numbers returns the sum of these numbers 
+
+d) A String with two numbers, one number in each line, returns the sum of these numbers
+
+e) A String with three numbers, separated like c and d returns the sum of these numbers 
+
+f) A String which represented a negative number throws an Exception 
+
+g) Represented numbers greater than 1000 will be dropped
+
