@@ -24,15 +24,15 @@ public class AnotherTestInOrder {
 	
 	@Test
 	@Order(2)
-	public void resultIsUsd() {
-		convertedAmmount = converter.convert(BigDecimal.TEN, "EUR", "CAN");
-		Assertions.assertEquals(new BigDecimal("20.000"), convertedAmmount);
+	public void resultIsCNY() {
+		convertedAmmount = converter.convert(BigDecimal.TEN, "EUR", "CNY");
+		Assertions.assertEquals(new BigDecimal("700.00"), convertedAmmount);
 	}
 	
 	@Test
 	@Order(3)
 	public void andBack() {
-		BigDecimal shouldBeTen = converter.convert(convertedAmmount, "CAN", "EUR");
+		BigDecimal shouldBeTen = converter.convert(convertedAmmount, "CNY", "EUR");
 		Assertions.assertEquals(BigDecimal.TEN, shouldBeTen);
 	}
 }

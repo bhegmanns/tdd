@@ -25,6 +25,16 @@ public class OddCheckerFunctionTest {
 	public void NumberMinValueIsNotOdd() {
 		assertThat("" + Integer.MIN_VALUE, CheckerFunctions.isOdd(Integer.MIN_VALUE), is(false));
 	}
+	
+	@Test
+	public void numberNegate1000IsNotOdd() {
+		assertThat(CheckerFunctions.isOdd(-1000), is(false));
+	}
+	
+	@Test
+	public void numberNegate1001IsOdd() {
+		assertThat(CheckerFunctions.isOdd(-1001), is(true));
+	}
 
 	@Test
 	public void Number1000IsNotOdd() {
