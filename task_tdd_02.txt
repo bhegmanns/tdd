@@ -1,0 +1,11 @@
+PasswordChecker
+
+You have to create a PasswordChecker with a verify-method.
+If at least one condition is not satisfied the verify method
+will throw an exception with specified text.
+
+Conditions:
+- password must contain at least 8 characters
+- password must contain at least one upper cased letter
+- password must contain at least one lower cased letter
+- password must contain at least one digit
