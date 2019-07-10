@@ -14,7 +14,7 @@ public class AddMashine {
 	
 	public AddMashine(Long initialValue) {
 		this.value = initialValue;
-		this.addedNumbers = 1;
+		this.addedNumbers = 0;
 	}
 	
 	public void add(Long value) {
@@ -32,6 +32,6 @@ public class AddMashine {
 	}
 	
 	public BigDecimal getAverage() {
-		return new BigDecimal(addedNumbers).divide(new BigDecimal(value));
+		return new BigDecimal(value).divide(new BigDecimal(addedNumbers));
 	}
 }

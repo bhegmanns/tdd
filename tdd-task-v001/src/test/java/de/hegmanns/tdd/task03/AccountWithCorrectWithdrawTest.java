@@ -23,9 +23,9 @@ public class AccountWithCorrectWithdrawTest {
 		Assertions.assertEquals("account is empty", throwedException.getMessage());
 	}
 	
-	@Test
-	public void testBranchCoverage1() {
-		AccountWithError account = new AccountWithError(BigDecimal.TEN);
-		account.withdraw(BigDecimal.ONE);
-	}
+//	@Test
+//	public void testBranchCoverage1() {
+//		AccountWithError account = new AccountWithError(BigDecimal.TEN);
+//		account.withdraw(BigDecimal.ONE);
+//	}
 }
