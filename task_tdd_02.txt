@@ -9,3 +9,19 @@ Conditions:
 - password must contain at least one upper cased letter
 - password must contain at least one lower cased letter
 - password must contain at least one digit
+
+>>>
+
+(0) input null throws excetion)
+
+a) input string with 7 chars throws exeption
+
+b) input string without any upper cased letter
+   but one lower cased letter and one digit  throws exception
+
+c) input string without any lower cased letter 
+   but one upper cased letter and one digit throws exception 
+
+d) input string without any digit 
+    but one upper and oe lower cased letter throws exception
+

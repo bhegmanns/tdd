@@ -65,6 +65,34 @@ public class StringTest {
 		}catch(NumberFormatException e) {}
 		
 	}
+	
+//	g) Represented numbers greater than 1000 will be dropped
+	@Test
+	public void numbersGreaterThan1000WillBeDropped() {
+		StringCalculator sut = new StringCalculator();
+		String anyStringWithLinebreak = "1000,2000\n500";
+		int expectedResult = 1500;
+		int result = sut.calculate(anyStringWithLinebreak);
+		assertThat(result, is(expectedResult));
+	}
+	
+	@Test
+	public void numbersGreaterContains1001WillBeDropped() {
+		StringCalculator sut = new StringCalculator();
+		String anyStringWithLinebreak = "1000,1001\n500";
+		int expectedResult = 1500;
+		int result = sut.calculate(anyStringWithLinebreak);
+		assertThat(result, is(expectedResult));
+	}
+	
+	@Test
+	public void numbersGreaterContains9990WillBeNotDropped() {
+		StringCalculator sut = new StringCalculator();
+		String anyStringWithLinebreak = "1000,999\n500";
+		int expectedResult = 2499;
+		int result = sut.calculate(anyStringWithLinebreak);
+		assertThat(result, is(expectedResult));
+	}
 }
 
 

@@ -28,7 +28,13 @@ public class StringCalculator {
 				if (parsedInteger < 0) {
 					throw new NumberFormatException("negative numbers are bad numbers");
 				}
-			res += parsedInteger;
+				if (parsedInteger > 1000) {
+					continue;
+				}
+				res += parsedInteger;
+//				if (parsedInteger <= 1000) {
+//					res += parsedInteger;
+//				}
 		    }
 			return res;
 		}
