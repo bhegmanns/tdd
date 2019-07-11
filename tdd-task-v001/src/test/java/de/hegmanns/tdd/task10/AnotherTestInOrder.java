@@ -13,7 +13,7 @@ import de.hegmanns.tdd.task10.CurrencyConverter;
 @TestMethodOrder(OrderAnnotation.class)
 public class AnotherTestInOrder {
 
-	CurrencyConverter converter = new CurrencyConverter();
+	CurrencyConverter converter = new CurrencyConverter(new HegiCurrencyDTO());
 	static BigDecimal convertedAmmount;
 	
 	@Test
