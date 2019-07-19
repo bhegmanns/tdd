@@ -1,0 +1,26 @@
+01 Define at least one empty string for new accountname/password-combination throws exception
+   with message "account name and password may not be empty"
+02 Define twice time non empty strings for new accountname/password with same accountname
+   trows exception "account name already exists"
+03 Define player pair for unknown account (=unknown accountname/password-combination) throws
+   exception with message "unknown accountname / password combination"
+04 Define at least one player with empty name of the player pair for known account 
+   (=known accountname/password-combination) throws exception with message 
+   "players name must not be empty"
+05 Define both player with equal names of the player pair for known account throws exception
+   with message "player name must not be equal"
+06 Define at least one player with a name which have been defined before for a player pair
+   for the same known account throws exception with message "player name ist already defined"
+07 Define pair-winner for unkonwn account throws exception with message 
+   "unknown accountname / password combination"
+08 Define pair-winner for known account but unknown pair throws exception with message
+   "unknown pair"
+09 Define pair-winner for known account and known pair not containing a pair-players name throws 
+   exception with message "winner must be a pair-player"
+10 Define player pair after first defining pair-winner for known account throws exception 
+   with message "after defining first winner new player-pairs not allowed"
+11 Define pair-winner for known account and known pair twice or more than one time
+   throws exception with message "winner already defined"
+12 Asking for winnerlist for known account before defined all pair-winner
+   throws exception with message "not all pair-winer defined"
+12 After output winner for account the account will be closed and can be defined new.
