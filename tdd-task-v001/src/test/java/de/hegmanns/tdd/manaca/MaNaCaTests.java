@@ -117,33 +117,33 @@ public class MaNaCaTests {
 	
 //	02 Define twice time non empty strings for new accountname/password with same accountname
 //	   trows exception "account name already exists"
-//	@Test
-//	public void twiceTimeSameAccountnameOtherPasswordThrowsException() {
-//		AccountService sut = new AccountService();
-//		String accountName = "anyAccountname";
-//		String firstPassword    = "anyFirstPassword";
-//		String secondPassword   = "anySecondPassword";
-//		sut.addAccount(accountName, firstPassword);
-//		try {
-//			sut.addAccount(accountName, secondPassword);
-//			throw new AssertionError("exception AccountException expected");
-//		}catch(AccountException e) {
-//			assertThat(e.getMessage(), is("account name already exists"));
-//		}
-//	}
-//	
-//	@Test
-//	public void twiceTimeSameAccountnameSamePasswordThrowsException() {
-//		AccountService sut = new AccountService();
-//		String accountName = "anyAccountname";
-//		String password    = "anyPassword";
-//		sut.addAccount(accountName, password);
-//		try {
-//			sut.addAccount(accountName, password);
-//			throw new AssertionError("exception AccountException expected");
-//		}catch(AccountException e) {
-//			assertThat(e.getMessage(), is("account name already exists"));
-//		}
-//	}
+	@Test
+	public void twiceTimeSameAccountnameOtherPasswordThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String firstPassword    = "anyFirstPassword";
+		String secondPassword   = "anySecondPassword";
+		sut.addAccount(accountName, firstPassword);
+		try {
+			sut.addAccount(accountName, secondPassword);
+			throw new AssertionError("exception AccountException expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("account name already exists"));
+		}
+	}
+	
+	@Test
+	public void twiceTimeSameAccountnameSamePasswordThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password    = "anyPassword";
+		sut.addAccount(accountName, password);
+		try {
+			sut.addAccount(accountName, password);
+			throw new AssertionError("exception AccountException expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("account name already exists"));
+		}
+	}
 	
 }
