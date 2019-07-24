@@ -20,8 +20,22 @@ public class AccountService {
 	private static boolean isEmpty(String string) {
 		return string==null || "".equals(string);
 	}
+	
+	private boolean isValidAccount(String accountname, String password) {
+		if (accountname == null || !accounts.containsKey(accountname)) {
+			return false;
+		}
+		String pw = accounts.get(accountname);
+		return pw.equals(password);
+	}
 
-	public void addPlayer(String otherAccountName, String password, String object, String object2) {
-		throw new AccountException("unknown accountname / password combination");
+	public void addPlayer(String otherAccountName, String password, String firstPlayername, String secondPlayername) {
+		if (!isValidAccount(otherAccountName, password)) {
+			throw new AccountException("unknown accountname / password combination");
+		}
+//		if (isEmpty(firstPlayername) || isEmpty(secondPlayername)) {
+			throw new AccountException("players name must not be empty");
+//		}
+		
 	}
 }

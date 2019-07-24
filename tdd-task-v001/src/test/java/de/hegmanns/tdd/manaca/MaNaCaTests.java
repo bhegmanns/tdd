@@ -213,4 +213,143 @@ public class MaNaCaTests {
 		}
 	}
 	
+//	04 Define at least one player with empty name of the player pair for known account 
+//	   (=known accountname/password-combination) throws exception with message 
+//	   "players name must not be empty"
+	
+	@Test
+	public void addFirstEmptyPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "";
+		String secondPlayername = "anySecondPlayername";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
+	
+	@Test
+	public void addFirstNullPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = null;
+		String secondPlayername = "anySecondPlayername";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
+	
+	@Test
+	public void addSecondNullPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyFirstPlayername";
+		String secondPlayername = null;
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
+	
+	@Test
+	public void addSecondEmptyPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyFirstPlayername";
+		String secondPlayername = "";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
+	
+	@Test
+	public void addFirstEmptyPlayerSecondEmptyPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "";
+		String secondPlayername = "";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
+	
+	@Test
+	public void addFirstNullPlayerSecondNullPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = null;
+		String secondPlayername = null;
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
+	
+	@Test
+	public void addFirstEmptyPlayerSecondNullPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "";
+		String secondPlayername = null;
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
+	
+	@Test
+	public void addFirstNullPlayerSecondEmptyPlayerThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = null;
+		String secondPlayername = "";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("players name must not be empty"));
+		}
+	}
 }
