@@ -372,4 +372,98 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("player name must not be equal"));
 		}
 	}
+	
+//	06 Define at least one player with a name which have been defined before for a player pair
+//	   for the same known account throws exception with message "player name ist already defined"
+	
+	@Test
+	public void addEqualsPairThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyFirstPlayername";
+		String secondPlayername = "anySecondPlayername";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("player name ist already defined"));
+		}
+	}
+	
+	@Test
+	public void addEqualFirstPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyFirstPlayername";
+		String secondPlayername = "anySecondPlayername";
+		String secondPlayernameSecondTime = "anySecondPlayernameSecondTime";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayernameSecondTime);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("player name ist already defined"));
+		}
+	}
+	
+	@Test
+	public void addEqualSecondPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyFirstPlayername";
+		String secondPlayername = "anySecondPlayername";
+		String firstPlayernameSecondTime = "anyFirstPlayernameSecondTime";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+		try {
+			sut.addPlayer(accountName, password, firstPlayernameSecondTime, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("player name ist already defined"));
+		}
+	}
+	
+	@Test
+	public void addEqualSecondPlayerAsFirstPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyFirstPlayername";
+		String secondPlayername = "anySecondPlayername";
+		String firstPlayernameSecondTime = "anyFirstPlayernameSecondTime";
+		String secondPlayernameSecondTime = firstPlayername;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+		try {
+			sut.addPlayer(accountName, password, firstPlayernameSecondTime, secondPlayernameSecondTime);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("player name ist already defined"));
+		}
+	}
+	
+	@Test
+	public void addEqualFirstPlayerAsSecondPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyFirstPlayername";
+		String secondPlayername = "anySecondPlayername";
+		String firstPlayernameSecondTime = secondPlayername;
+		String secondPlayernameSecondTime = "anySecondPlayernameSecondTime";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+		try {
+			sut.addPlayer(accountName, password, firstPlayernameSecondTime, secondPlayernameSecondTime);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("player name ist already defined"));
+		}
+	}
 }
