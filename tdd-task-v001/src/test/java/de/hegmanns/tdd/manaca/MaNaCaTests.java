@@ -146,4 +146,71 @@ public class MaNaCaTests {
 		}
 	}
 	
+//	03 Define player pair for unknown account (=unknown accountname/password-combination) throws
+//	   exception with message "unknown accountname / password combination"
+	
+	@Test
+	public void addPlayerpairForUnknownAccountNameThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String otherAccountName = "otherAccountname";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(otherAccountName, password, null, null);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown accountname / password combination"));
+		}
+	}
+	
+	@Test
+	public void addPlayerpairForKnownAccountNameWrongPasswordThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String wrongPassword = "wrongPassword";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, wrongPassword, null, null);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown accountname / password combination"));
+		}
+	}
+	
+	@Test
+	public void addPlayerpairForNullAccountNameThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String nullAccountName = null;
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(nullAccountName, password, null, null);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown accountname / password combination"));
+		}
+	}
+	
+	@Test
+	public void addPlayerpairForNullPasswordThrowsExceptio() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String nullPassword = null;
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, nullPassword, null, null);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown accountname / password combination"));
+		}
+	}
+	
 }

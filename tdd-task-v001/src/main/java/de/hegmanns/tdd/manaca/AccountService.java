@@ -20,4 +20,8 @@ public class AccountService {
 	private static boolean isEmpty(String string) {
 		return string==null || "".equals(string);
 	}
+
+	public void addPlayer(String otherAccountName, String password, String object, String object2) {
+		throw new AccountException("unknown accountname / password combination");
+	}
 }
