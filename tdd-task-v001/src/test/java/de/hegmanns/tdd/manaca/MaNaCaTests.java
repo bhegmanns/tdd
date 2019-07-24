@@ -352,4 +352,24 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("players name must not be empty"));
 		}
 	}
+	
+//	05 Define both player with equal names of the player pair for known account throws exception
+//	   with message "player name must not be equal"
+	
+	@Test
+	public void bothPlayerNullThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayername = "anyPlayername";
+		String secondPlayername = "anyPlayername";
+		sut.addAccount(accountName, password);
+		
+		try {
+			sut.addPlayer(accountName, password, firstPlayername, secondPlayername);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("player name must not be equal"));
+		}
+	}
 }

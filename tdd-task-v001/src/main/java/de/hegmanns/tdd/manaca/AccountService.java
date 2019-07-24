@@ -33,9 +33,9 @@ public class AccountService {
 		if (!isValidAccount(otherAccountName, password)) {
 			throw new AccountException("unknown accountname / password combination");
 		}
-//		if (isEmpty(firstPlayername) || isEmpty(secondPlayername)) {
+		if (isEmpty(firstPlayername) || isEmpty(secondPlayername)) {
 			throw new AccountException("players name must not be empty");
-//		}
-		
+		}
+		throw new AccountException("player name must not be equal");
 	}
 }
