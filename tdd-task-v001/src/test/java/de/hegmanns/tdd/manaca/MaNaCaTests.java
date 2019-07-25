@@ -721,4 +721,61 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("unknown pair"));
 		}
 	}
+	
+//	09 Define pair-winner for known account and known pair not containing a pair-players name throws 
+//	   exception with message "winner must be a pair-player"
+	
+	@Test
+	public void setWinnerForNotContainingPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String unknownWinner = "unknownWinner";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstPlayer, secondPlayer, unknownWinner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("winner must be a pair-player"));
+		}
+	}
+	
+	@Test
+	public void setWinnerForNullPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String nullWinner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstPlayer, secondPlayer, nullWinner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("winner must be a pair-player"));
+		}
+	}
+	
+	@Test
+	public void setWinnerForEmptyPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String emptyWinner = "emptyWinner";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstPlayer, secondPlayer, emptyWinner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("winner must be a pair-player"));
+		}
+	}
 }

@@ -65,7 +65,14 @@ public class AccountService {
 		if (!isValidAccount(account, password)) {
 			throw new AccountException("unknown accountname / password combination");
 		}
-		throw new AccountException("unknown pair");
+		Map<String, String> pairs = players.get(account);
+		if (isEmpty(firstPlayer) || isEmpty(secondPlayer) || !containsPlayer(pairs, firstPlayer) || !containsPlayer(pairs, secondPlayer)) {
+			throw new AccountException("unknown pair");
+		}
+//		if (!firstPlayer.equals(winner) && !secondPlayer.equals(winner)) {
+			throw new AccountException("winner must be a pair-player");
+//		}
+		
 	}
 
 }
