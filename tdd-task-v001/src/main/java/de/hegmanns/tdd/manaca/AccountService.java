@@ -7,6 +7,7 @@ public class AccountService {
 
 	private Map<String, String> accounts = new HashMap<>();
 	private Map<String, Map<String, String>> players = new HashMap<>();
+	private Map<String, Boolean> winnerDefiningModes = new HashMap<>();
 
 	public void addAccount(String accountName, String password) {
 		if (isEmpty(accountName) || isEmpty(password)) {
@@ -17,6 +18,7 @@ public class AccountService {
 		}
 		accounts.put(accountName, password);
 		players.put(accountName, new HashMap<>());
+		winnerDefiningModes.put(accountName, Boolean.FALSE);
 	}
 
 	private static boolean isEmpty(String string) {
@@ -48,6 +50,9 @@ public class AccountService {
 		if (!isValidAccount(otherAccountName, password)) {
 			throw new AccountException("unknown accountname / password combination");
 		}
+		if (Boolean.TRUE.equals(winnerDefiningModes.get(otherAccountName))){
+			throw new AccountException("after defining first winner new player-pairs not allowed");
+		}
 		if (isEmpty(firstPlayername) || isEmpty(secondPlayername)) {
 			throw new AccountException("players name must not be empty");
 		}
@@ -66,12 +71,14 @@ public class AccountService {
 			throw new AccountException("unknown accountname / password combination");
 		}
 		Map<String, String> pairs = players.get(account);
+		winnerDefiningModes.put(account, Boolean.TRUE);
 		if (isEmpty(firstPlayer) || isEmpty(secondPlayer) || !containsPlayer(pairs, firstPlayer) || !containsPlayer(pairs, secondPlayer)) {
 			throw new AccountException("unknown pair");
 		}
-//		if (!firstPlayer.equals(winner) && !secondPlayer.equals(winner)) {
+		
+		if (!firstPlayer.equals(winner) && !secondPlayer.equals(winner)) {
 			throw new AccountException("winner must be a pair-player");
-//		}
+		}
 		
 	}
 

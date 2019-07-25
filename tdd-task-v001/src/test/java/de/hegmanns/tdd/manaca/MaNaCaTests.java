@@ -768,7 +768,7 @@ public class MaNaCaTests {
 		String password     = "anyPassword";
 		String firstPlayer = "anyFirstPlayer";
 		String secondPlayer = "anySecondPlayer";
-		String emptyWinner = "emptyWinner";
+		String emptyWinner = "";
 		sut.addAccount(accountName, password);
 		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
 		try {
@@ -776,6 +776,30 @@ public class MaNaCaTests {
 			throw new AssertionError("Exception AccountExcepion expected");
 		}catch(AccountException e) {
 			assertThat(e.getMessage(), is("winner must be a pair-player"));
+		}
+	}
+	
+//	10 Define player pair after first defining pair-winner for known account throws exception 
+//	   with message "after defining first winner new player-pairs not allowed"
+	
+	@Test
+	public void addPairAfterDefiningPairWinnerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String winner = firstPlayer;
+		String firstPlayerSecondPair = "anyFirstPlayerSecondPair";
+		String secondPlayerSecondPair = "anySecondPlayerSecondPair";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		sut.setWinner(accountName, password, firstPlayer, secondPlayer, winner);
+		try {
+			sut.addPlayer(accountName, password, firstPlayerSecondPair, secondPlayerSecondPair);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("after defining first winner new player-pairs not allowed"));
 		}
 	}
 }
