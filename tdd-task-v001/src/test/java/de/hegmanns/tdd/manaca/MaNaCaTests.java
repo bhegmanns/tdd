@@ -466,4 +466,43 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("player name ist already defined"));
 		}
 	}
+	
+//	07 Define pair-winner for unkonwn account throws exception with message 
+//	   "unknown accountname / password combination"
+	
+	@Test
+	public void defineWinnerForWrongPasswordThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String wrongPassword = "wrongPassword";
+		String firstPlayer = null;
+		String secondPlayer = null;
+		String winner = null;
+		sut.addAccount(accountName, password);
+		try {
+			sut.setWinner(accountName, wrongPassword, firstPlayer, secondPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown accountname / password combination"));
+		}
+	}
+	
+	@Test
+	public void defineWinnerForUnknownAccountThowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String unknownAccount = "unknownAccount";
+		String firstPlayer = null;
+		String secondPlayer = null;
+		String winner = null;
+		sut.addAccount(accountName, password);
+		try {
+			sut.setWinner(unknownAccount, password, firstPlayer, secondPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown accountname / password combination"));
+		}
+	}
 }
