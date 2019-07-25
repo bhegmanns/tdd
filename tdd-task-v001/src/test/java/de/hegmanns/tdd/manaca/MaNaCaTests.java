@@ -846,4 +846,29 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("winner already defined"));
 		}
 	}
+	
+//	12 Asking for winnerlist for known account before defined all pair-winner
+//	   throws exception with message "not all pair-winer defined"
+	
+	@Test
+	public void askWinnerListAfterSettingOneWinnerByTwoPairsThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayerFirstPair = "anyFirstPlayer";
+		String secondPlayerFirstPair = "anySecondPlayer";
+		String firstPlayerSecondPair = "anyFirstPlayerSecondPair";
+		String secondPlayerSecondPair = "anySecondPlayerSecondPair";
+		String winner = firstPlayerFirstPair;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayerFirstPair, secondPlayerFirstPair);
+		sut.addPlayer(accountName, password, firstPlayerSecondPair, secondPlayerSecondPair);
+		sut.setWinner(accountName, password, firstPlayerFirstPair, secondPlayerFirstPair, winner);
+		try {
+			sut.getWinners(accountName, password);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("not all pair-winer defined"));
+		}
+	}
 }

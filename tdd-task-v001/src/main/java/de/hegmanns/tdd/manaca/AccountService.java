@@ -1,6 +1,7 @@
 package de.hegmanns.tdd.manaca;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -94,5 +95,13 @@ public class AccountService {
 		.orElseThrow(() -> new AccountException("winner already defined"))
 		.setValue(winner);
 	}
+
+	public List<String> getWinners(String accountName, String password) {
+		throw new AccountException("not all pair-winer defined");
+	}
+	
+
+	
+	
 
 }
