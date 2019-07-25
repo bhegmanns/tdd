@@ -60,9 +60,12 @@ public class AccountService {
 		}
 	}
 
-	public void setWinner(String unknownAccount, String password, String firstPlayer, String secondPlayer,
+	public void setWinner(String account, String password, String firstPlayer, String secondPlayer,
 			String winner) {
-		throw new AccountException("unknown accountname / password combination");
+		if (!isValidAccount(account, password)) {
+			throw new AccountException("unknown accountname / password combination");
+		}
+		throw new AccountException("unknown pair");
 	}
 
 }

@@ -505,4 +505,220 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("unknown accountname / password combination"));
 		}
 	}
+	
+//	08 Define pair-winner for known account but unknown pair throws exception with message
+//	   "unknown pair"
+	
+	@Test
+	public void setWinnerWithNullFirstPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = null;
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithEmptyFirstPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = "";
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithNullSecondtPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String secondUnknownPlayer = null;
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithEmptySecondPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String secondUnknownPlayer = "";
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithEmptyPlayersThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = "";
+		String secondUnknownPlayer = "";
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithNullPlayersThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = null;
+		String secondUnknownPlayer = null;
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithEmptyFirstPlayerAndNullSecondPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = "";
+		String secondUnknownPlayer = null;
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithNullFirstPlayerAndEmptySecondPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = null;
+		String secondUnknownPlayer = "";
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	@Test
+	public void setWinnerWithUnknownFirstPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = "anyFirstUnknownPlayer";
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithUnknownSecondPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String secondUnknownPlayer = "anySecondUnknownPlayer";
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
+	
+	@Test
+	public void setWinnerWithUnknownBothPlayerThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String firstUnknownPlayer = "anyFirstUnknownPlayer";
+		String secondUnknownPlayer = "anySecondUnknownPlayer";
+		String winner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		try {
+			sut.setWinner(accountName, password, firstUnknownPlayer, secondUnknownPlayer, winner);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("unknown pair"));
+		}
+	}
 }
