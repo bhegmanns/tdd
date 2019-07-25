@@ -871,4 +871,22 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("not all pair-winer defined"));
 		}
 	}
+	
+//	13 After output winner for account the account will be closed and can be defined new.
+	
+	@Test
+	public void afterAskingWinnerlistNewAccountWithSameNameIsPossible() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayerFirstPair = "anyFirstPlayer";
+		String secondPlayerFirstPair = "anySecondPlayer";
+		String winner = firstPlayerFirstPair;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayerFirstPair, secondPlayerFirstPair);
+		sut.setWinner(accountName, password, firstPlayerFirstPair, secondPlayerFirstPair, winner);
+		sut.getWinners(accountName, password);
+		
+		sut.addAccount(accountName, password);
+	}
 }

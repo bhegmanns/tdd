@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 import java.util.Optional;
 
 public class AccountService {
@@ -97,7 +98,21 @@ public class AccountService {
 	}
 
 	public List<String> getWinners(String accountName, String password) {
-		throw new AccountException("not all pair-winer defined");
+		if (winners.get(accountName).entrySet().stream()
+		.filter((e) -> e.getValue() == null)
+		.findFirst().isPresent()) {
+			throw new AccountException("not all pair-winer defined");
+		}
+		
+		List<String> result = winners.get(accountName).entrySet().stream()
+		.map((e) -> e.getValue())
+		.collect(Collectors.toList());
+		
+		accounts.remove(accountName);
+		players.remove(accountName);
+		winnerDefiningModes.remove(accountName);
+		winners.remove(accountName);
+		return result;
 	}
 	
 
