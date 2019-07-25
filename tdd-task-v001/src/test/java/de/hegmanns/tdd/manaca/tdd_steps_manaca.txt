@@ -23,4 +23,5 @@
    throws exception with message "winner already defined"
 12 Asking for winnerlist for known account before defined all pair-winner
    throws exception with message "not all pair-winer defined"
-12 After output winner for account the account will be closed and can be defined new.
+13 After output winner for account the account will be closed and can be defined new.
+14 Output winnerlist give a list of all set winners.
