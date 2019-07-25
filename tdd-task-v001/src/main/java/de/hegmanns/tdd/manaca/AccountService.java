@@ -104,8 +104,7 @@ public class AccountService {
 			throw new AccountException("not all pair-winer defined");
 		}
 		
-		List<String> result = null;
-		winners.get(accountName).entrySet().stream()
+		List<String> result = winners.get(accountName).entrySet().stream()
 		.map((e) -> e.getValue())
 		.collect(Collectors.toList());
 		

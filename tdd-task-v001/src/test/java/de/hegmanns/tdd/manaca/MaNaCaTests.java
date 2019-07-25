@@ -1,10 +1,13 @@
 package de.hegmanns.tdd.manaca;
 
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 
 public class MaNaCaTests {
@@ -888,5 +891,27 @@ public class MaNaCaTests {
 		sut.getWinners(accountName, password);
 		
 		sut.addAccount(accountName, password);
+	}
+	
+//	14 Output winnerlist give a list of all set winners.
+	
+	@Test
+	public void winnerlistContainsAllWinners() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayerFirstPair = "anyFirstPlayer";
+		String secondPlayerFirstPair = "anySecondPlayer";
+		String firstPlayerSecondPair = "anyFirstPlayerSecondPair";
+		String secondPlayerSecondPair = "anySecondPlayerSecondPair";
+		String winnerFirstPair = firstPlayerFirstPair;
+		String winnerSecondPair = secondPlayerSecondPair;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayerFirstPair, secondPlayerFirstPair);
+		sut.addPlayer(accountName, password, firstPlayerSecondPair, secondPlayerSecondPair);
+		sut.setWinner(accountName, password, firstPlayerFirstPair, secondPlayerFirstPair, winnerFirstPair);
+		sut.setWinner(accountName, password, firstPlayerSecondPair, secondPlayerSecondPair, winnerSecondPair);
+		List<String> winnerlist = sut.getWinners(accountName, password);
+		assertThat(winnerlist, containsInAnyOrder(winnerFirstPair, winnerSecondPair));
 	}
 }
