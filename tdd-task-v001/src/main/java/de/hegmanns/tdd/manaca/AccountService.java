@@ -2,11 +2,14 @@ package de.hegmanns.tdd.manaca;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 
 public class AccountService {
 
 	private Map<String, String> accounts = new HashMap<>();
 	private Map<String, Map<String, String>> players = new HashMap<>();
+	private Map<String, Map<String[], String>> winners = new HashMap<>();
 	private Map<String, Boolean> winnerDefiningModes = new HashMap<>();
 
 	public void addAccount(String accountName, String password) {
@@ -19,6 +22,7 @@ public class AccountService {
 		accounts.put(accountName, password);
 		players.put(accountName, new HashMap<>());
 		winnerDefiningModes.put(accountName, Boolean.FALSE);
+		winners.put(accountName, new HashMap<>());
 	}
 
 	private static boolean isEmpty(String string) {
@@ -43,6 +47,7 @@ public class AccountService {
 			return false;
 		}
 		allPlayers.put(firstPlayername, secondPlayername);
+		winners.get(accountName).put(new String[] {firstPlayername, secondPlayername}, null);
 		return true;
 	}
 
@@ -80,6 +85,14 @@ public class AccountService {
 			throw new AccountException("winner must be a pair-player");
 		}
 		
+		winners.get(account).entrySet().stream()
+		.filter((e) -> (e.getKey()[0].equals(firstPlayer) && e.getKey()[1].equals(secondPlayer))
+				     ||(e.getKey()[0].equals(secondPlayer) && e.getKey()[1].equals(firstPlayer))
+				)
+		.findFirst()
+		.filter((e) -> e.getValue() == null)
+		.orElseThrow(() -> new AccountException("winner already defined"))
+		.setValue(winner);
 	}
 
 }

@@ -802,4 +802,48 @@ public class MaNaCaTests {
 			assertThat(e.getMessage(), is("after defining first winner new player-pairs not allowed"));
 		}
 	}
+	
+	@Test
+	public void addPairAfterDefiningPairWinnerWithOtherOrderThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String winner = firstPlayer;
+		String firstPlayerSecondPair = "anyFirstPlayerSecondPair";
+		String secondPlayerSecondPair = "anySecondPlayerSecondPair";
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		sut.setWinner(accountName, password, secondPlayer, firstPlayer, winner);
+		try {
+			sut.addPlayer(accountName, password, firstPlayerSecondPair, secondPlayerSecondPair);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("after defining first winner new player-pairs not allowed"));
+		}
+	}
+	
+//	11 Define pair-winner for known account and known pair twice or more than one time
+//	   throws exception with message "winner already defined"
+	
+	@Test
+	public void defineWinnerForSamePairTwiceTimesThrowsException() {
+		AccountService sut = new AccountService();
+		String accountName = "anyAccountname";
+		String password     = "anyPassword";
+		String firstPlayer = "anyFirstPlayer";
+		String secondPlayer = "anySecondPlayer";
+		String winner = firstPlayer;
+		String secondWinner = null;
+		sut.addAccount(accountName, password);
+		sut.addPlayer(accountName, password, firstPlayer, secondPlayer);
+		sut.setWinner(accountName, password, firstPlayer, secondPlayer, winner);
+		try {
+			sut.setWinner(accountName, password, firstPlayer, secondPlayer, secondPlayer);
+			throw new AssertionError("Exception AccountExcepion expected");
+		}catch(AccountException e) {
+			assertThat(e.getMessage(), is("winner already defined"));
+		}
+	}
 }
